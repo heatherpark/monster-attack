@@ -14,7 +14,8 @@ new Vue({
         player: 9,
         monster: 15
       }
-    }
+    },
+    playing: false
   },
   methods: {
     attack: function() {
@@ -26,6 +27,8 @@ new Vue({
       }
     },
     newGame: function() {
+      this.playing = true;
+      
       this.hp.player = 100;
       this.hp.monster = 100;
     },
