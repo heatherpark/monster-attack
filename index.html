@@ -16,9 +16,9 @@
         <div class="healthbar">
           <div 
             class="healthbar text-center" 
-            v-bind:style="{ width: scores.player + '%' }"
+            v-bind:style="{ width: hp.player + '%' }"
             style="background-color: green; margin: 0; color: white;">
-            {{ scores.player }}
+            {{ hp.player }}
           </div>
         </div>
       </div>
@@ -27,22 +27,24 @@
         <div class="healthbar">
           <div 
             class="healthbar text-center"
-            v-bind:style="{ width: scores.monster + '%' }" 
+            v-bind:style="{ width: hp.monster + '%' }" 
             style="background-color: green; margin: 0; color: white;">
-            {{ scores.monster }}
+            {{ hp.monster }}
           </div>
         </div>
       </div>
     </section>
     <section class="row controls">
       <div class="small-12 columns">
-        <button id="start-game">START NEW GAME</button>
+        <button 
+          @click="newGame"
+          id="start-game">START NEW GAME</button>
       </div>
     </section>
     <section class="row controls">
       <div class="small-12 columns">
         <button @click="attack" id="attack">ATTACK</button>
-        <button id="special-attack">SPECIAL ATTACK</button>
+        <button @click="specialAttack" id="special-attack">SPECIAL ATTACK</button>
         <button id="heal">HEAL</button>
         <button id="give-up">GIVE UP</button>
       </div>
