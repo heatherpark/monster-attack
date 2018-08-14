@@ -30,11 +30,22 @@ new Vue({
       const min = range[0];
       const max = range[1];
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-      
+
       return randomNumber;
     },
     getDamage: function(attackType) {
       return this.getRandomNumber(this.damageRange[attackType]);
+    },
+    giveUp: function() {
+      this.playing = false;
+    },
+    heal: function() {
+      if ((this.hp.player + 4) > 100) {
+        this.hp.player = 100;
+        return;
+      }
+
+      this.hp.player += 4;
     },
     logDamage: function(monsterDamage, playerDamage) {
       this.damageLog.push([monsterDamage, playerDamage]);
@@ -44,6 +55,8 @@ new Vue({
 
       this.hp.player = 100;
       this.hp.monster = 100;
+
+      this.damageLog = [];
     },
     updateHP: function(character, damage) {
       if (!this.hp[character]) return;
@@ -53,14 +66,12 @@ new Vue({
         : this.hp[character] = 0;
     },
     specialAttack: function() {
-      console.log('special attack');
       if (this.hp.player && this.hp.monster
         || this.hp.player >= 0 && !this.hp.monster 
         || this.hp.monster >= 0 && !this.hp.player) {
           const playerDamage = this.getDamage('specialAttack');
           const monsterDamage = this.getDamage('specialAttack');
-          console.log(playerDamage)
-          console.log(monsterDamage)
+
           this.updateHP('player', playerDamage);
           this.updateHP('monster', monsterDamage);
 
