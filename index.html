@@ -14,10 +14,7 @@
       <div class="small-6 columns">
         <h1 class="text-center">YOU</h1>
         <div class="healthbar">
-          <div 
-            class="healthbar text-center" 
-            v-bind:style="{ width: hp.player + '%' }"
-            style="background-color: green; margin: 0; color: white;">
+          <div class="healthbar text-center" v-bind:style="{ width: hp.player + '%' }" style="background-color: green; margin: 0; color: white;">
             {{ hp.player }}
           </div>
         </div>
@@ -25,10 +22,7 @@
       <div class="small-6 columns">
         <h1 class="text-center">MONSTER</h1>
         <div class="healthbar">
-          <div 
-            class="healthbar text-center"
-            v-bind:style="{ width: hp.monster + '%' }" 
-            style="background-color: green; margin: 0; color: white;">
+          <div class="healthbar text-center" v-bind:style="{ width: hp.monster + '%' }" style="background-color: green; margin: 0; color: white;">
             {{ hp.monster }}
           </div>
         </div>
@@ -36,14 +30,10 @@
     </section>
     <section class="row controls">
       <div class="small-12 columns">
-        <button 
-          @click="newGame"
-          id="start-game">START NEW GAME</button>
+        <button @click="newGame" id="start-game">START NEW GAME</button>
       </div>
     </section>
-    <section 
-      v-if="playing"
-      class="row controls">
+    <section v-if="playing" class="row controls">
       <div class="small-12 columns">
         <button @click="attack" id="attack">ATTACK</button>
         <button @click="specialAttack" id="special-attack">SPECIAL ATTACK</button>
@@ -54,9 +44,14 @@
     <section class="row log">
       <div class="small-12 columns">
         <ul>
-          <li>
-
-          </li>
+          <template v-for="damage in damageLog">
+            <li class="monster-turn">
+              Monster hits player for {{ damage[0] }}
+            </li>
+            <li class="player-turn">
+              Player hits monster for {{ damage[1] }}
+            </li>
+          </template>
         </ul>
       </div>
     </section>
@@ -64,4 +59,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
